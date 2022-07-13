@@ -19,6 +19,12 @@ const reducer = (curVals, newVals) => {
 	};
 };
 
+const getRandomArbitrary = (min, max) => {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 const Form = () => {
 	const [formValues, setFormValues] = useReducer(reducer, initialFormValues);
 
@@ -38,10 +44,10 @@ const Form = () => {
 		event.preventDefault();
 		event.stopPropagation();
 
-		setUsers(formValues);
+		setUsers({id: getRandomArbitrary(0, 9999999), ...formValues});
 	};
 
-	console.log("formValues", formValues);
+	// console.log("formValues", formValues);
 	console.log("users", users);
 
 	return (
